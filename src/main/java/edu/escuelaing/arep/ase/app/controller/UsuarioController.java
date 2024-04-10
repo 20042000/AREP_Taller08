@@ -15,11 +15,11 @@ import jakarta.ws.rs.core.Response;
 @RequestScoped
 public class UsuarioController {
 
-    private UsuarioServicio usurioServicio;
+    private UsuarioServicio usuarioServicio;
 
     @Inject
-    public UsuarioController(UsuarioServicio usurioServicio) {
-        this.usurioServicio = usurioServicio;
+    public UsuarioController(UsuarioServicio usuarioServicio) {
+        this.usuarioServicio = usuarioServicio;
     }
 
     @POST
