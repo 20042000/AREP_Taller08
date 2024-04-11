@@ -2,7 +2,8 @@ package edu.escuelaing.arep.ase.app.controller;
 
 import edu.escuelaing.arep.ase.app.domain.Post;
 import edu.escuelaing.arep.ase.app.service.PostServicio;
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.ApplicationScoped;
+
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -13,7 +14,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 @Path("/post")
-@RequestScoped
+@ApplicationScoped
 public class PostController {
 
     private PostServicio postServicio;
@@ -48,7 +49,7 @@ public class PostController {
     }
 
     @GET
-    @Path("/post/{id}")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response consultarPostPorId(String id){
         try{

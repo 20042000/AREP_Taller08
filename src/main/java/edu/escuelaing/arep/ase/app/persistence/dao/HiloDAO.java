@@ -4,11 +4,17 @@ import java.util.HashMap;
 import java.util.List;
 import edu.escuelaing.arep.ase.app.domain.Hilo;
 import edu.escuelaing.arep.ase.app.exception.TwitterException;
+import jakarta.enterprise.context.ApplicationScoped;
 
 
+@ApplicationScoped
 public class HiloDAO {
     
     private HashMap<String, Hilo> hilos;
+
+    public HiloDAO() {
+        this.hilos = new HashMap<>();
+    }
 
     public Hilo agregarHilo(Hilo hilo) throws TwitterException {
         if(hilos.containsKey(hilo.getId()) || hilo.getId() == null){

@@ -5,10 +5,16 @@ import java.util.List;
 
 import edu.escuelaing.arep.ase.app.domain.Post;
 import edu.escuelaing.arep.ase.app.exception.TwitterException;
+import jakarta.enterprise.context.ApplicationScoped;
 
+@ApplicationScoped
 public class PostDAO {
 
     private HashMap<String, Post> posts;
+
+    public PostDAO() {
+        posts = new HashMap<>();
+    }
 
     public Post agregarPost(Post post) throws TwitterException{
         if(posts.containsKey(post.getId()) || post.getId() == null){

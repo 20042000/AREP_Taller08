@@ -2,7 +2,7 @@ package edu.escuelaing.arep.ase.app.controller;
 
 import edu.escuelaing.arep.ase.app.domain.Usuario;
 import edu.escuelaing.arep.ase.app.service.UsuarioServicio;
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -13,7 +13,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 @Path("/usuario")
-@RequestScoped
+@ApplicationScoped
 public class UsuarioController {
 
     private UsuarioServicio usuarioServicio;
@@ -37,7 +37,7 @@ public class UsuarioController {
     }
 
     @GET
-    @Path("/usuario/{usuario}")
+    @Path("/{usuario}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response consultarUsuarioPorId(String usuario){
         try{

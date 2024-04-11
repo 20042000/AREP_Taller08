@@ -2,7 +2,7 @@ package edu.escuelaing.arep.ase.app.controller;
 
 import edu.escuelaing.arep.ase.app.domain.Hilo;
 import edu.escuelaing.arep.ase.app.service.HiloServicio;
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -13,7 +13,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 @Path("/hilo")
-@RequestScoped
+@ApplicationScoped
 public class HiloController {
 
     private HiloServicio hiloServicio;
@@ -48,7 +48,7 @@ public class HiloController {
     }
 
     @GET
-    @Path("/hilo/{id}")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response consultarHiloPorId(String id){
         try{
