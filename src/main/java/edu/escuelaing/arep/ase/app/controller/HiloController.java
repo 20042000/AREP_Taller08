@@ -1,13 +1,16 @@
 package edu.escuelaing.arep.ase.app.controller;
 
 import edu.escuelaing.arep.ase.app.domain.Hilo;
+import edu.escuelaing.arep.ase.app.domain.Post;
 import edu.escuelaing.arep.ase.app.service.HiloServicio;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.PATCH;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -56,6 +59,20 @@ public class HiloController {
         }catch(Exception e){
             return Response.status(403).entity(e.getMessage()).build();
         }
+    }
+
+    @PATCH
+    @Path("/{id}/post")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response agregarPostAlHilo(@PathParam("id") String id, Post post) {
+        try {
+            hiloServicio.agregarPostAlHilo(id, post);
+            return Response.status(200).build();
+        } catch (Exception e) {
+            return Response.status(403).entity(e.getMessage()).build();
+        }
+
     }
 
 

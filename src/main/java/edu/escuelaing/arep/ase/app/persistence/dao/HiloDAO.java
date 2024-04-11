@@ -3,6 +3,7 @@ package edu.escuelaing.arep.ase.app.persistence.dao;
 import java.util.HashMap;
 import java.util.List;
 import edu.escuelaing.arep.ase.app.domain.Hilo;
+import edu.escuelaing.arep.ase.app.domain.Post;
 import edu.escuelaing.arep.ase.app.exception.TwitterException;
 import jakarta.enterprise.context.ApplicationScoped;
 
@@ -33,5 +34,10 @@ public class HiloDAO {
             
         }
         return hilos.get(id);
+    }
+
+    public void agregarPostAlHilo(String id, Post post) throws TwitterException{
+        Hilo hilo = consultarHiloPorId(id);
+        hilo.agregarPost(post);
     }
 }

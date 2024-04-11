@@ -9,7 +9,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Post {
 
-    private String id;
     private String usuario;
     private String comentario;
     

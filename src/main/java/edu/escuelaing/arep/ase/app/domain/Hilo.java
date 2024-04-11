@@ -14,5 +14,9 @@ public class Hilo {
     private String id;
     private String usuarioCreador;
     private Collection<Post> posts;
+
+    public void agregarPost(Post post) {
+        this.posts.add(post);
+    }
     
 }

@@ -7,11 +7,11 @@ import edu.escuelaing.arep.ase.app.exception.TwitterException;
 
 public interface PostServicio {
 
-    Post agregarPost(Post post) throws TwitterException;
+ 
 
     List<Post> consultarPosts();
 
-    Post consultarPostPorId(String id) throws TwitterException;
+  
 
     
 }

@@ -24,19 +24,6 @@ public class PostController {
         this.postServicio = postServicio;
     }
 
-    @POST
-    @Path("")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response agregarPost(Post post) {
-        try {
-            return Response.status(200).entity(postServicio.agregarPost(post)).build();
-        } catch (Exception e) {
-            return Response.status(403).entity(e.getMessage()).build();
-        }
-        
-    }
-
     @GET
     @Path("/posts")
     @Produces(MediaType.APPLICATION_JSON)
@@ -48,15 +35,5 @@ public class PostController {
         }
     }
 
-    @GET
-    @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response consultarPostPorId(String id){
-        try{
-            return Response.status(200).entity(postServicio.consultarPostPorId(id)).build();
-        }catch(Exception e){
-            return Response.status(403).entity(e.getMessage()).build();
-        }
-    }
     
 }

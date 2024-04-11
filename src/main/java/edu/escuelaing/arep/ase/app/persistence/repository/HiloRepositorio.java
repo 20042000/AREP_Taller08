@@ -3,6 +3,7 @@ package edu.escuelaing.arep.ase.app.persistence.repository;
 import java.util.List;
 
 import edu.escuelaing.arep.ase.app.domain.Hilo;
+import edu.escuelaing.arep.ase.app.domain.Post;
 import edu.escuelaing.arep.ase.app.exception.TwitterException;
 import edu.escuelaing.arep.ase.app.persistence.dao.HiloDAO;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -28,6 +29,10 @@ public class HiloRepositorio {
 
     public Hilo consultarHiloPorId(String id) throws TwitterException {
         return hiloDAO.consultarHiloPorId(id);
+    }
+
+    public void agregarPostAlHilo(String id, Post post) throws TwitterException  {
+        hiloDAO.agregarPostAlHilo(id, post);
     }
     
 }

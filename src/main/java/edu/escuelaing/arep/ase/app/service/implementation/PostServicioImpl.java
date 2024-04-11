@@ -19,19 +19,12 @@ public class PostServicioImpl implements PostServicio{
         this.postRepositorio = postRepositorio;
     }
 
-    @Override
-    public Post agregarPost(Post post) throws TwitterException {
-        return postRepositorio.agregarPost(post);
-    }
 
     @Override
     public List<Post> consultarPosts(){
         return postRepositorio.consultarPosts();
     }
 
-    @Override
-    public Post consultarPostPorId(String id) throws TwitterException {
-        return postRepositorio.consultarPostPorId(id);
-    }
+
     
 }
