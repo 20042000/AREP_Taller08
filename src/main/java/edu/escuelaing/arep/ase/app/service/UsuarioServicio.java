@@ -5,6 +5,8 @@ import edu.escuelaing.arep.ase.app.exception.TwitterException;
 
 public interface UsuarioServicio {
 
-    boolean agregarUsuario(Usuario usuario) throws TwitterException;
+    Usuario agregarUsuario(Usuario usuario) throws TwitterException;
+
+    Usuario consultarUsuarioPorId(String usuario) throws TwitterException;
     
 }

@@ -5,6 +5,7 @@ import edu.escuelaing.arep.ase.app.service.PostServicio;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -33,6 +34,28 @@ public class PostController {
             return Response.status(403).entity(e.getMessage()).build();
         }
         
+    }
+
+    @GET
+    @Path("/posts")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response consultarPosts(){
+        try{
+            return Response.status(200).entity(postServicio.consultarPosts()).build();
+        }catch(Exception e){
+            return Response.status(403).entity(e.getMessage()).build();
+        }
+    }
+
+    @GET
+    @Path("/post/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response consultarPostPorId(String id){
+        try{
+            return Response.status(200).entity(postServicio.consultarPostPorId(id)).build();
+        }catch(Exception e){
+            return Response.status(403).entity(e.getMessage()).build();
+        }
     }
     
 }

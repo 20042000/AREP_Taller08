@@ -8,8 +8,12 @@ public class UsuarioRepositorio {
 
     private UsuarioDAO usuarioDAO;
 
-    public boolean agregarUsuario(Usuario usuario) throws TwitterException{
+    public Usuario agregarUsuario(Usuario usuario) throws TwitterException{
         return usuarioDAO.agregarUsuario(usuario);
+    }
+
+    public Usuario consultarUsuarioPorId(String usuario) throws TwitterException {
+        return usuarioDAO.consultarUsuarioPorId(usuario);
     }
 
     

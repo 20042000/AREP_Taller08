@@ -5,6 +5,7 @@ import edu.escuelaing.arep.ase.app.service.UsuarioServicio;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -34,5 +35,18 @@ public class UsuarioController {
         }
         
     }
+
+    @GET
+    @Path("/usuario/{usuario}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response consultarUsuarioPorId(String usuario){
+        try{
+            return Response.status(200).entity(usuarioServicio.consultarUsuarioPorId(usuario)).build();
+        }catch(Exception e){
+            return Response.status(403).entity(e.getMessage()).build();
+        }
+    }
+
+
     
 }

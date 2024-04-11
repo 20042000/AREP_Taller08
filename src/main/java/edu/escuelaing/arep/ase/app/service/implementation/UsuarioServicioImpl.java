@@ -19,8 +19,13 @@ public class UsuarioServicioImpl implements UsuarioServicio{
 
 
     @Override
-    public boolean agregarUsuario(Usuario usuario) throws TwitterException {
+    public Usuario agregarUsuario(Usuario usuario) throws TwitterException {
         return usuarioRepositorio.agregarUsuario(usuario);
+    }
+
+    @Override
+    public Usuario consultarUsuarioPorId(String usuario) throws TwitterException {
+        return usuarioRepositorio.consultarUsuarioPorId(usuario);
     }
     
 }
