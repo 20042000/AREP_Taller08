@@ -7,11 +7,6 @@ import edu.escuelaing.arep.ase.app.exception.TwitterException;
 
 public interface PostServicio {
 
- 
-
     List<Post> consultarPosts();
 
-  
-
-    
 }

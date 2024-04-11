@@ -37,6 +37,9 @@ public class HiloServicioImpl implements HiloServicio{
 
     @Override
     public void agregarPostAlHilo(String id, Post post) throws TwitterException {
+        if(post.getComentario().length() > 140){
+            throw new TwitterException("El comentario excede los 140 caracteres");
+        }
         hiloRepositorio.agregarPostAlHilo(id, post);
     }
     
