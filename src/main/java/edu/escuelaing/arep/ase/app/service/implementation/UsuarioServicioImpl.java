@@ -1,5 +1,7 @@
 package edu.escuelaing.arep.ase.app.service.implementation;
 
+import org.json.JSONObject;
+
 import edu.escuelaing.arep.ase.app.domain.Usuario;
 import edu.escuelaing.arep.ase.app.exception.TwitterException;
 import edu.escuelaing.arep.ase.app.persistence.repository.UsuarioRepositorio;
@@ -11,6 +13,7 @@ import jakarta.inject.Inject;
 public class UsuarioServicioImpl implements UsuarioServicio{
 
     private UsuarioRepositorio usuarioRepositorio;
+
 
     @Inject
     public UsuarioServicioImpl(UsuarioRepositorio usuarioRepositorio) {
@@ -27,5 +30,13 @@ public class UsuarioServicioImpl implements UsuarioServicio{
     public Usuario consultarUsuarioPorId(String usuario) throws TwitterException {
         return usuarioRepositorio.consultarUsuarioPorId(usuario);
     }
-    
+
+    @Override
+    public String login(String login) throws TwitterException {
+        JSONObject objetoJson = new JSONObject(login);
+        String usuario = objetoJson.getString("username");
+        String contrasena = objetoJson.getString("password");
+        usuarioRepositorio.login(usuario, contrasena);
+        return null;
+    }
 }

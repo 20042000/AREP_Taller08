@@ -47,6 +47,18 @@ public class UsuarioController {
         }
     }
 
+    @POST
+    @Path("/login")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response login(String login){
+        try{
+            return Response.status(200).entity(usuarioServicio.login(login)).build();
+        }catch(Exception e){
+            return Response.status(403).entity(e.getMessage()).build();
+        }
+    }
+
 
     
 }
