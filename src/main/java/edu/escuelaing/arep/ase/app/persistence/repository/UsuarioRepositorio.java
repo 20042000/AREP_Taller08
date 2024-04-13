@@ -16,6 +16,7 @@ public class UsuarioRepositorio {
     @Inject
     public UsuarioRepositorio(UsuarioDAO usuarioDAO) {
         this.usuarioDAO = usuarioDAO;
+        this.loginDAO = new LoginDAO();
     }
 
     public Usuario agregarUsuario(Usuario usuario) throws TwitterException{

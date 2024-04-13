@@ -4,6 +4,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Encriptacion {
+
+    public Encriptacion() {}
+    
     public String hashString(String originalString) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");

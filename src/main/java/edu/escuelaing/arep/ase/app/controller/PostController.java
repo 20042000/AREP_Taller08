@@ -25,7 +25,7 @@ public class PostController {
     }
 
     @GET
-    @Path("/posts")
+    @Path("")
     @Produces(MediaType.APPLICATION_JSON)
     public Response consultarPosts(){
         try{

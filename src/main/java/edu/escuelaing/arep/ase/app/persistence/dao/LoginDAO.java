@@ -12,6 +12,7 @@ public class LoginDAO {
 
     public LoginDAO() {
         logins = new HashMap<>();
+        encriptacion = new Encriptacion();
         logins.put("LuisaGiron", encriptacion.hashString("Luisa05-25"));
         logins.put("FelipeLadino", encriptacion.hashString("Felipe11-20"));
         logins.put("DanielaLadino",encriptacion.hashString("Daniela20-04"));
