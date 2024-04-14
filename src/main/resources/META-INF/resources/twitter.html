@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Taller 8</title>
+        <link rel="stylesheet" href="twitter.css">
+    </head>
+    <body onload="init()">
+        <form>
+            <label for="comentarios">¿Qué estás pensando?</label><br><br>
+            <textarea name="comentarios" id="comentarios" rows="10" cols="50" maxlength="140"></textarea><br><br>
+            <input type="button" value="Publicar" onclick="postTwitter()"><br><br>
+        </form>
+        <ul id="posts">
+
+        </ul>
+        <script src="twitter.js"></script>
+    </body>
+</html>

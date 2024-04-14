@@ -1,7 +1,10 @@
 package edu.escuelaing.arep.ase.app.persistence.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
+
 import edu.escuelaing.arep.ase.app.domain.Hilo;
 import edu.escuelaing.arep.ase.app.domain.Post;
 import edu.escuelaing.arep.ase.app.exception.TwitterException;
@@ -15,6 +18,7 @@ public class HiloDAO {
 
     public HiloDAO() {
         this.hilos = new HashMap<>();
+        hilos.put("1", new Hilo("1", "LuisaGiron", new ArrayList<>()));
     }
 
     public Hilo agregarHilo(Hilo hilo) throws TwitterException {

@@ -15,6 +15,9 @@ public class UsuarioDAO {
 
     public UsuarioDAO() {
         usuarios = new HashMap<>();
+        usuarios.put("LuisaGiron", new Usuario("Luisa Griron", "LuisaGiron"));
+        usuarios.put("FelipeLadino", new Usuario("Felipe Ladino", "FelipeLadino"));
+        usuarios.put("DanielaLadino", new Usuario("Danie laLadino", "DanielaLadino"));
     }
 
     public Usuario agregarUsuario(Usuario usuario) throws TwitterException{
