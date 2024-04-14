@@ -68,7 +68,7 @@ public class HiloController {
         }
     }
 
-    @PATCH
+    @POST
     @Path("/{id}/post")
     @RolesAllowed({ "User", "Admin" })
     @Consumes(MediaType.APPLICATION_JSON)

@@ -6,10 +6,10 @@ function init() {
 function postTwitter() {
     let inputComentarios = document.getElementById("comentarios");
     let endPoint = "/hilo/1/post";
-    let peticion = solicitarEndPointPATCH(endPoint, {
+    let peticion = solicitarEndPointPOST(endPoint, {
         usuario: sessionStorage.getItem("usuario"),
         comentario: inputComentarios.value
-    }, "PATCH");
+    }, "POST");
     peticion.then(respuesta => {
         cargarPosts();
     })
@@ -38,13 +38,13 @@ function cargarPosts() {
     })
 }
 
-async function solicitarEndPointPATCH(endPoint, body, methodRequest){
+async function solicitarEndPointPOST(endPoint, body, methodRequest){
     return await fetch(window.location.origin + endPoint, {
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + sessionStorage.getItem("jwt")
         },
-        method: "PATCH",
+        method: "POST",
         body: JSON.stringify(body)
     })
     .then(respuesta => {
