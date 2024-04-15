@@ -182,10 +182,7 @@ Se construyo una aplicación, similar a Twitter que permite a los usuarios publi
 * Las solicitudes posteriores del front-end a los microservicios back-end incluyen el JWT en el encabezado de la solicitud.
 * Los microservicios back-end validan el JWT antes de procesar la solicitud.
 
-
-**Componentes**
-
-![](images/taller08.PNG)
+![](images/taller08.png)
 
 ---
 
