@@ -15,7 +15,7 @@ Esta aplicación le permite a los usuarios hacer posts de 140 caracteres e ir re
 
 * [AWS](https://aws.amazon.com/es/training/awsacademy/)
 
-* [Quarkus] (https://es.quarkus.io/about/)
+* [Quarkus](https://es.quarkus.io/about/)
 
 ---
 
@@ -95,7 +95,9 @@ Es importante tener en cuenta que, si el usuario de Luisa recarga la pagina o en
 
 ---
 ### Ejecución de Test
-
+```
+mvn test
+```
 
 ---
 ### Despliegue en AWS
@@ -103,7 +105,7 @@ Es importante tener en cuenta que, si el usuario de Luisa recarga la pagina o en
 En el siguiente link encontrara el video donde se evidencia el despliegue en AWS:
 
 ```
-
+https://youtu.be/R3PjA0yoG9s
 ```
 
 ---
