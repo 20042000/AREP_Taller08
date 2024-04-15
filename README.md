@@ -1,12 +1,8 @@
 # TALLER 8 : Microservicios
 
-Se creo una aplicación web usando el framework Quarkus (https://quarkus.io/). La cual fue desplegada en AWS utilizando los servicios de EC2, S3 Y Lambdas.
+Se creo una aplicación web usando el framework Quarkus (https://quarkus.io/). La cual fue desplegada en AWS utilizando los servicios de EC2 y S3.
 
 Esta aplicación le permite a los usuarios hacer posts de 140 caracteres e ir registrándolos en un stream único de posts (similar a Twitter). En donde se tuvieron en cuenta tres entidades Usuario, hilo(stream) y posts.
-
-Para esto realizamos dos procesos:
-1.	Se creó un monolito con Quarkus. (Revisar los primeros commits) 
-2.	Con base a lo anterior se separó el monolito en tres microservicios independientes.
 
 ---
 ### Prerrequisitos
@@ -18,6 +14,8 @@ Para esto realizamos dos procesos:
 * [Java -17](https://www.cursosaula21.com/que-es-java/)
 
 * [AWS](https://aws.amazon.com/es/training/awsacademy/)
+
+* [Quarkus] (https://es.quarkus.io/about/)
 
 ---
 
@@ -35,9 +33,65 @@ https://github.com/20042000/AREP_Taller08.git
 cd AREP_Taller08
 ```
 
+3.Contruimos el proyecto
+
+```
+mvn package
+```
+
+4.Levantamos el servidor
+
+```
+mvn quarkus:run
+```
 ---
 
 ### Usabilidad
+
+Nuestra aplicación consta de dos formulario uno es el login y el otro es nuestra aplicación similar a twitter donde los usuarios podran realizar los post que se iran registrando en un hilo único de posts.
+
+**Importante:** Si un usuario no esta logueado, no puede acceder a la página principal
+
+1.Probamos nuestra aplicación accediendo a la siguiente URL en el navegador
+
+```
+http://localhost:8080/login.html
+```
+
+Allí vamos a loguearnos con uno de nuestros usuarios, con el username y la contraseña, como se muestar a continuación:
+
+![](images/localUsuarioLu.PNG)
+
+**Nota:** Puede ingresar con los siguientes usuarios:
+
+```
+Usuario: LuisaGiron
+Contraseña: Luisa05-25
+
+Usuario: FelipeLadino
+Contraseña: Felipe11-20
+
+Usuario: DanielaLadino
+Contraseña: Daniela20-04
+
+```
+Si ingresamos con las credenciales correctas se abrirá la página principal de la aplicación, en donde el usuario ingresará un comentario en el campo de texto y luego debe dar click en publicar.
+
+Luego de que el usuario publique el post, este aparecerá en una lista, como se muestra a continuación:
+
+![](images/localPost.PNG)
+
+
+Ahora vamos a ingresar con otro usuario desde una ventana incognito para postear otro mensaje
+
+![](images/localUsuarioFe.PNG)
+
+![](images/localPost2.PNG)
+
+Como podemos observar, aparecen dos posts uno del usuario Luisa y otro del usuario Felipe el cual se agregó a nuestro hilo. 
+
+Es importante tener en cuenta que, si el usuario de Luisa recarga la pagina o envía otro post, este también podrá visualizar los posts que hayan realizado otros usuarios.
+
 
 ---
 ### Ejecución de Test
@@ -53,9 +107,83 @@ En el siguiente link encontrara el video donde se evidencia el despliegue en AWS
 ```
 
 ---
+
+### Pruebas Despliegue en AWS
+
+**EC2:**
+
+
+Probamos nuestra aplicación accediendo a la siguiente URL en el navegador
+
+```
+http://ec2-3-83-53-112.compute-1.amazonaws.com:8080/login.html
+```
+
+Ingresamos con el usuario LuisaGiron
+![](images/EC2UsuarioLu.PNG)
+
+Realizamos un Post, como se muestra a continuación:
+![](images/EC2Post.PNG)
+
+Ahora ingresamos con el usuario DanielaLadino en una ventana incognito
+
+![](images/EC2UsuarioDa.PNG)
+
+Realizamos un Post con el usuario DanielaLadino:
+![](images/EC2Post2.PNG)
+
+Como podemos observar se listaron 2 post los cuales son: el post realizado por LuisaGiron y el post realizado por DanielaLadino.
+
+
+**S3:**
+
+Probamos nuestra aplicación accediendo a la siguiente URL en el navegador
+
+```
+http://twitter-statics.s3-website-us-east-1.amazonaws.com/login.html
+```
+
+Ingresamos con el usuario FelipeLadino
+![](images/S3UsuarioFe.PNG)
+
+Realizamos un Post, como se muestra a continuación:
+![](images/S3Post.PNG)
+
+Ahora ingresamos con el usuario LuisaGiron en una ventana incognito
+
+![](images/S3UsuarioLu.PNG)
+
+Realizamos un Post con el usuario DanielaLadino:
+![](images/S3Post2.PNG)
+
+Como podemos observar se listaron 2 post los cuales son: el post realizado por LuisaGiron y el post realizado por DanielaLadino.
+
+---
 ### Arquitectura
 
+Se construyo una aplicación, similar a Twitter que permite a los usuarios publicar mensajes y ver un flujo de publicaciones. La arquitectura se compone de tres niveles principales:
+
+**1. Front-End:** Este nivel está implementado utilizando HTML, CSS y JavaScript y se almacena en un Bucket S3, que es un servicio de almacenamiento ofrecido por AWS que se usa frecuentemente para alojar contenido estático.
+
+**2. Back-End:** Se implemento utilizando Quarkus y consta de tres microservicios:
+
+* **Usuario:** Este microservicio gestiona actividades de administración de usuarios, como agregar un usuario, consultar usuarios por id y loguearse.
+
+* **Hilo:** Este microservicio gestiona actividades de administración de hilos, como agregar hilos, consultar todos los hilos, consultar un hilo por el id y agregar posts al hilo.
+
+* **Post:** Este microservicio gestiona actividades de administración de post, como consultar los posts.
+
+**3. JWT:** Se utiliza para autenticar usuarios
+
+* Cuando un usuario inicia sesión, el microservicio Usuario genera un JWT.
+* El JWT se envía de vuelta al front-end en la respuesta HTTP.
+* Las solicitudes posteriores del front-end a los microservicios back-end incluyen el JWT en el encabezado de la solicitud.
+* Los microservicios back-end validan el JWT antes de procesar la solicitud.
+
+
 **Componentes**
+
+![](images/taller08.PNG)
 
 ---
 
@@ -76,6 +204,8 @@ En el siguiente link encontrara el video donde se evidencia el despliegue en AWS
 * [Visual Studio Code](https://openwebinars.net/blog/que-es-visual-studio-code-y-que-ventajas-ofrece/): Es un editor de código fuente desarrollado por Microsoft. Es software libre y multiplataforma, está disponible para Windows, GNU/Linux y macOS.
 
 * [AWS](https://aws.amazon.com/es/training/awsacademy/): Ofrece cursos y recursos de aprendizaje que permiten a los estudiantes desarrollar diferentes habilidades relacionadas con la nube de AWS.
+
+* [Quarkus](https://es.quarkus.io/about/): Quarkus fue creado para permitir a los desarrolladores de Java crear aplicaciones para un mundo moderno y nativo de la nube. Quarkus es un marco Java nativo de Kubernetes adaptado a GraalVM y HotSpot, elaborado a partir de las mejores bibliotecas y estándares Java. El objetivo es convertir a Java en la plataforma líder en Kubernetes y entornos sin servidor, al tiempo que ofrece a los desarrolladores un marco para abordar una gama más amplia de arquitecturas de aplicaciones distribuidas.
 
 
 ## Autores
